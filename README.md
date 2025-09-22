@@ -26,7 +26,7 @@ O programa renderiza uma cena 3D dinâmica que simula os principais corpos do no
 
 ### Imagem do Programa
 
-<img width="1216" height="734" alt="Captura de tela de 2025-09-20 14-19-02" src="https://github.com/user-attachments/assets/d503e7e6-2e1b-4b27-a742-349546313a6b" />
+<img width="1213" height="766" alt="image" src="https://github.com/user-attachments/assets/64b960aa-b11f-4efa-b847-3cc72eabe23a" />
 
 ---
 
