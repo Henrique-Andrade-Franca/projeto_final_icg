@@ -75,8 +75,6 @@ Após a compilação bem-sucedida, execute o programa com o comando:
 
 2.  **Aplicação de Texturas em Esferas:** A função padrão `glutSolidSphere()` não gera coordenadas de textura, o que impede o mapeamento de imagens. A solução foi utilizar os objetos "quadrics" da biblioteca GLU (`gluNewQuadric`, `gluQuadricTexture`, `gluSphere`), que permitem a geração automática dessas coordenadas e a correta aplicação das texturas.
 
-3.  **Carregamento de Arquivos:** O erro mais comum foi o de "Falha ao carregar textura". Isso ocorria porque o programa não encontrava os arquivos de imagem. A solução foi garantir que o caminho dos arquivos estivesse correto e que as imagens estivessem sempre na mesma pasta do executável final, simplificando o gerenciamento de assets.
-
 -----
 
 ### O que pode ser melhorado (e como melhorar)
