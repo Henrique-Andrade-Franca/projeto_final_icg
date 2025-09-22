@@ -93,4 +93,8 @@ Após a compilação bem-sucedida, execute o programa com o comando:
 
 ### O que cada integrante fez
 
-*(Descreva aqui a contribuição de cada membro da equipe para o projeto)*
+* Henrique: Responsável pela implementação da lógica central de renderização e da modelagem hierárquica (Bloco 2). Desenvolveu a função recursiva drawBody, que posiciona os planetas e suas luas utilizando a pilha de matrizes do OpenGL (glPushMatrix/glPopMatrix) para aplicar as transformações de rotação e translação de forma aninhada e correta.
+
+* Deivid: Focado na estruturação da cena e nos efeitos visuais (Bloco 2). Configurou a função de renderização principal (display), incluindo o sistema de câmera (gluLookAt), o posicionamento e as propriedades da fonte de luz do Sol. Trabalhou em conjunto com Henrique para integrar a lógica hierárquica na cena final e garantir que a iluminação incidisse corretamente sobre os planetas.
+
+* Pedro: Encarregado da arquitetura de dados, infraestrutura do projeto e interatividade (Blocos 1 e 3). Definiu a struct CelestialBody para organizar as informações, implementou a função de carregamento de texturas (loadTexture), e configurou todo o ambiente inicial com GLUT, incluindo a criação da janela, o loop de animação (timer) e as funções de callback para a interação do usuário via teclado.
