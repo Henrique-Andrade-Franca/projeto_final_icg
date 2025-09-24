@@ -124,7 +124,7 @@ void drawBody(const CelestialBody& body, float day) {
     // 2. TRANSLAÇÃO: Afasta o corpo celeste do seu pai
     glTranslatef(body.distance, 0.0f, 0.0f);
 
-    // Desenha a órbita do planeta (opcional)
+    // Desenha a órbita do planeta
     if (body.distance > 0) {
         glPushMatrix();
         glTranslatef(-body.distance, 0.0, 0.0);
