@@ -3,32 +3,33 @@
 **Disciplina:** Introdução à Computação Gráfica
 
 **Equipe:**
-* DEIVID GABRIEL DA SILVA LOPES PROCOPIO
-* HENRIQUE DE ANDRADE FRANCA
-* PEDRO IAM PEREIRA LOPES
 
-Este projeto consiste na criação de uma simulação 3D interativa do sistema solar, utilizando C++ e a biblioteca OpenGL (com FreeGLUT).
+  * DEIVID GABRIEL DA SILVA LOPES PROCOPIO
+  * HENRIQUE DE ANDRADE FRANCA
+  * PEDRO IAM PEREIRA LOPES
 
----
+Este projeto consiste na criação de uma simulação 3D interativa do sistema solar, utilizando C++ e a biblioteca OpenGL (com FreeGLUT), com foco em uma implementação clara e didática dos conceitos aprendidos na disciplina.
+
+-----
 
 ### O que o código faz
 
 O programa renderiza uma cena 3D dinâmica que simula os principais corpos do nosso sistema solar. As funcionalidades implementadas são:
 
-* **Modelagem Hierárquica:** O Sol está no centro do sistema, com os 8 planetas (Mercúrio, Vênus, Terra, Marte, Júpiter, Saturno, Urano e Netuno) orbitando ao seu redor. A Lua da Terra também está presente, orbitando corretamente seu planeta.
-* **Movimento Realístico:** Cada planeta possui sua própria velocidade de órbita e de rotação em seu eixo, criando uma animação contínua e representativa.
-* **Iluminação e Sombreamento:** O Sol atua como uma fonte de luz pontual na origem da cena. Os planetas são iluminados por esta fonte, exibindo sombreamento suave (`GL_SMOOTH`) que lhes confere volume e profundidade.
-* **Texturização:** Cada corpo celeste é mapeado com uma textura de imagem real (`.jpg` ou `.png`), conferindo um aspecto visual mais detalhado e reconhecível. Os anéis de Saturno também possuem uma textura própria com transparência.
-* **Interatividade:** O usuário pode controlar uma câmera livre para navegar pela cena, utilizando as teclas do teclado para se mover e rotacionar a visão.
-* **Controle de Animação:** É possível aumentar ou diminuir a velocidade da simulação em tempo de execução.
+  * **Modelagem Hierárquica:** O Sol está no centro do sistema, com os 8 planetas orbitando ao seu redor. A Lua da Terra também está presente, orbitando corretamente seu planeta através de transformações aninhadas (`glPushMatrix`/`glPopMatrix`).
+  * **Animação Contínua:** Cada planeta possui sua própria velocidade de órbita e de rotação em seu eixo, criando um movimento contínuo e proporcional.
+  * **Iluminação e Sombreamento:** O Sol atua como uma fonte de luz pontual na origem da cena. Os planetas são iluminados por esta fonte, exibindo sombreamento suave (`GL_SMOOTH`) que lhes confere volume e profundidade.
+  * **Texturização:** Cada corpo celeste é mapeado com uma textura de imagem (`.jpg` ou `.png`), conferindo um aspecto visual detalhado. Os anéis de Saturno são implementados com uma textura própria com transparência.
+  * **Interatividade:** O usuário pode controlar uma **câmera orbital**, girando ao redor do Sol e aplicando zoom para observar a cena de diferentes ângulos.
+  * **Controle de Animação:** É possível aumentar ou diminuir a velocidade da simulação em tempo de execução.
 
----
+-----
 
 ### Imagem do Programa
 
-<img width="1213" height="766" alt="image" src="https://github.com/user-attachments/assets/64b960aa-b11f-4efa-b847-3cc72eabe23a" />
+<img width="1214" height="765" alt="image" src="https://github.com/user-attachments/assets/a192acfe-449d-42c8-ac25-8819e6f58033" />
 
----
+-----
 
 ### Instruções de como Compilar e Executar
 
@@ -38,11 +39,13 @@ Para compilar e executar o projeto, você precisará dos seguintes componentes:
 
 1.  **Compilador C++:** Um compilador moderno como o `g++`.
 2.  **FreeGLUT:** Biblioteca de utilitários para OpenGL.
-    * **Linux (Debian/Ubuntu):** `sudo apt-get install freeglut3-dev`
-    * **macOS (com Homebrew):** `brew install freeglut`
-3.  **Bibliotecas OpenGL:** `GL` e `GLU`, que geralmente são instaladas junto com os drivers da placa de vídeo ou o FreeGLUT.
+      * **Linux (Debian/Ubuntu):** `sudo apt-get install freeglut3-dev`
+      * **macOS (com Homebrew):** `brew install freeglut`
+3.  **Bibliotecas OpenGL:** `GL` e `GLU`, geralmente instaladas com os drivers da placa de vídeo ou o FreeGLUT.
 4.  **Biblioteca `stb_image.h`:** Uma biblioteca de um único arquivo para carregar imagens. **Este arquivo deve estar na mesma pasta do código-fonte.**
-5.  **Arquivos de Textura:** Todas as imagens (`.jpg` e `.png`) dos planetas, sol e anéis devem estar localizadas **na mesma pasta onde o executável será gerado.**
+      * Disponível em: [https://github.com/nothings/stb](https://github.com/nothings/stb)
+5.  **Arquivos de Textura:** Todas as imagens (`.jpg` e `.png`) devem estar localizadas **na mesma pasta onde o executável será gerado.**
+      * Disponível em: [https://www.solarsystemscope.com/textures/](https://www.solarsystemscope.com/textures/) 
 
 #### Compilação
 
@@ -52,6 +55,10 @@ Com todas as dependências instaladas, abra um terminal na pasta do projeto e ex
 g++ -o sistema_solar sistema_solar.cpp -lglut -lGLU -lGL -lm
 ```
 
+*(Nota: ajuste o nome `sistema_solar.cpp` para o nome que você salvou o arquivo)*
+
+#### Execução
+
 Após a compilação bem-sucedida, execute o programa com o comando:
 
 ```bash
@@ -60,39 +67,39 @@ Após a compilação bem-sucedida, execute o programa com o comando:
 
 #### Controles
 
-  - `W` / `S`: Mover a câmera para frente / trás.
-  - `A` / `D`: Mover a câmera para a esquerda / direita.
-  - `Setas Cima` / `Baixo`: Mover a câmera para cima / baixo.
-  - `Setas Esquerda` / `Direita`: Girar a câmera horizontalmente.
-  - `+` / `-`: Aumentar / diminuir a velocidade da animação.
-  - `Q` ou `ESC`: Fechar o programa.
+  * **Setas Esquerda / Direita:** Gira a câmera ao redor do Sol.
+  * **Setas Cima / Baixo:** Aplica zoom (aproxima/afasta a câmera).
+  * **`+` / `-`:** Aumenta / diminui a velocidade da animação.
+  * **`Q` ou `ESC`:** Fecha o programa.
 
 -----
 
 ### Principais problemas encontrados
 
-1.  **Gerenciamento da Pilha de Matrizes:** O desafio inicial foi garantir o aninhamento correto das chamadas `glPushMatrix()` e `glPopMatrix()` para a modelagem hierárquica. Um `glPopMatrix()` no lugar errado fazia com que Marte orbitasse a Terra, por exemplo. A solução foi desenhar a hierarquia em papel e seguir rigorosamente o padrão de salvar a matriz antes de uma transformação e restaurá-la após o desenho do objeto e seus satélites.
+1.  **Gerenciamento da Pilha de Matrizes:** O conceito de `glPushMatrix()` e `glPopMatrix()` foi fundamental para a hierarquia Sol-Planeta-Lua. O principal desafio foi garantir que, para cada planeta, a matriz do Sol fosse salva e restaurada corretamente, e o mesmo para a Lua em relação à Terra, evitando que um corpo celeste afetasse a posição do outro indevidamente.
 
-2.  **Aplicação de Texturas em Esferas:** A função padrão `glutSolidSphere()` não gera coordenadas de textura, o que impede o mapeamento de imagens. A solução foi utilizar os objetos "quadrics" da biblioteca GLU (`gluNewQuadric`, `gluQuadricTexture`, `gluSphere`), que permitem a geração automática dessas coordenadas e a correta aplicação das texturas.
+2.  **Aplicação de Texturas em Esferas:** A função padrão `glutSolidSphere()` não gera coordenadas de textura. A solução foi utilizar os objetos "quadrics" da biblioteca GLU (`gluNewQuadric`, `gluQuadricTexture`, `gluSphere`), que permitem a geração automática dessas coordenadas e a correta aplicação das texturas nos corpos esféricos.
 
 -----
 
 ### O que pode ser melhorado (e como melhorar)
 
-  - **Skybox para Fundo Espacial:** Atualmente o fundo é preto. Uma grande melhoria seria a implementação de um *skybox* (um cubo gigante com texturas de estrelas mapeadas em suas faces internas). Isso criaria um ambiente muito mais imersivo. A implementação envolveria carregar 6 texturas e desenhar um cubo em volta de toda a cena, desabilitando o teste de profundidade para o fundo.
+  * **Skybox para Fundo Espacial:** Atualmente o fundo é preto. Uma grande melhoria seria a implementação de um *skybox* (um cubo gigante com texturas de estrelas mapeadas em suas faces internas) para criar um ambiente muito mais imersivo.
 
-  - **Órbitas Elípticas e Inclinadas:** As órbitas no código são circulares e no mesmo plano. Para maior realismo, elas poderiam ser implementadas como elipses (usando `glScale` para achatar o círculo antes da rotação) e com suas respectivas inclinações em relação à eclíptica (adicionando uma `glRotatef` no eixo X ou Z antes da translação).
+  * **Órbitas Elípticas e Inclinadas:** As órbitas no código são circulares e no mesmo plano. Para maior realismo, elas poderiam ser implementadas como elipses (usando `glScale` para achatar o círculo antes da rotação) e com suas respectivas inclinações em relação à eclíptica (adicionando uma `glRotatef` extra).
 
-  - **Sistema de Câmera Avançado:** A câmera atual é livre. Poderia ser criado um sistema para focar em um planeta específico, com a câmera seguindo-o em sua órbita. Isso exigiria atualizar os parâmetros do `gluLookAt()` a cada quadro com a posição do planeta alvo.
+  * **Exibição de Informações na Tela:** Implementar texto na tela (usando `glutBitmapCharacter`) para mostrar informações, como o nome do planeta em foco ou a velocidade atual da simulação, tornando a experiência mais interativa.
 
-  - **Exibição de Informações na Tela:** Implementar texto na tela (usando `glutBitmapCharacter`) para mostrar o nome do planeta mais próximo, a velocidade da simulação ou outras informações, tornando a experiência mais informativa.
+  * **Iluminação Realista:** O modelo de luz poderia ser melhorado ativando a **atenuação**, que faria a luz do Sol diminuir com a distância, tornando os planetas externos mais escuros, e reduzindo a **luz ambiente** para criar sombras mais profundas e realistas, como as do espaço.
 
 -----
 
 ### O que cada integrante fez
 
-* Henrique: Responsável pela implementação da lógica central de renderização e da modelagem hierárquica (Bloco 2). Desenvolveu a função recursiva drawBody, que posiciona os planetas e suas luas utilizando a pilha de matrizes do OpenGL (glPushMatrix/glPopMatrix) para aplicar as transformações de rotação e translação de forma aninhada e correta.
+O projeto foi dividido em três seções principais de implementação, com cada integrante sendo responsável por uma parte fundamental do código, garantindo uma contribuição proporcional de toda a equipe.
 
-* Deivid: Focado na estruturação da cena e nos efeitos visuais (Bloco 2). Configurou a função de renderização principal (display), incluindo o sistema de câmera (gluLookAt), o posicionamento e as propriedades da fonte de luz do Sol. Trabalhou em conjunto com Henrique para integrar a lógica hierárquica na cena final e garantir que a iluminação incidisse corretamente sobre os planetas.
+* **Henrique:** Responsável pela arquitetura de dados e pelas funções utilitárias de base do projeto. Ele definiu a estrutura de dados `CelestialBody`, que organiza as informações de cada corpo celeste, e implementou as funções essenciais `loadTexture`, para o carregamento e configuração de todas as texturas, e `drawOrbit`, para a renderização das órbitas.
 
-* Pedro: Encarregado da arquitetura de dados, infraestrutura do projeto e interatividade (Blocos 1 e 3). Definiu a struct CelestialBody para organizar as informações, implementou a função de carregamento de texturas (loadTexture), e configurou todo o ambiente inicial com GLUT, incluindo a criação da janela, o loop de animação (timer) e as funções de callback para a interação do usuário via teclado.
+* **Deivid:** Encarregado da implementação da função de renderização principal, o coração visual do projeto. Ele desenvolveu toda a lógica contida na função `display`, que inclui o posicionamento da câmera orbital (`gluLookAt`), a definição da fonte de luz, e a correta aplicação das transformações hierárquicas (`glPushMatrix`/`glPopMatrix`, `glRotatef`, `glTranslatef`) para animar os planetas, a lua e os anéis de Saturno a cada quadro.
+
+* **Pedro:** Focado na inicialização do ambiente OpenGL, na interatividade e no ciclo de vida da aplicação. Ele foi responsável pela função `main`, que cria a janela e registra os callbacks, e pela função `init`, que carrega os dados dos planetas e configura os estados do OpenGL (iluminação, profundidade, etc.). Adicionalmente, implementou a animação através da função `timer` e a interatividade do usuário com o teclado (`keyboard` e `specialKeys`).
